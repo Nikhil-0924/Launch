@@ -98,6 +98,11 @@
             margin: 20px auto;
         }
 
+        .zod-rec {
+            font-size: 12px;
+            color: white;
+        }
+
         .details img {
             width: 100px;
             height: 100px;
@@ -166,7 +171,7 @@ This year, you’ll feel more self-assured, ready to pursue your dreams with con
                 image: "./vrischikam.jpg", adayam: 2, vyayam: 14, rajapujyam: 5, avamanam: 2, description: `Scorpio (October 23 - November 21)
 In 2025, you’ll experience healing and personal transformation. Your efforts to improve your health, finances, or emotional well-being will pay off. Positive changes are likely in your work environment, and there’s a boost in your creative and spiritual growth.`},
             "Dhanus": {
-                image: "./Dhanus.jpg", adayam: 5, vyayam: 5, rajapujyam: 5, avamanam: 5, description: `Sagittarius (November 22 - December 21)
+                image: "./dhanus.jpg", adayam: 5, vyayam: 5, rajapujyam: 5, avamanam: 5, description: `Sagittarius (November 22 - December 21)
 This year, you’ll be on a high when it comes to personal relationships. Your optimism and adventurous spirit will draw new, exciting people into your life. Your creative and artistic endeavors also shine, leading to unexpected rewards.` },
             "Makaram": {
                 image: "./makaram.jpg", adayam: 8, vyayam: 14, rajapujyam: 4, avamanam: 5, description: `Capricorn (December 22 - January 19)
@@ -221,14 +226,32 @@ In 2025, your mind will be sharp and filled with innovative ideas. This is a fan
         // `;
         //     }
 
+        // function updateDetails(zodiac) {
+        //     const data = zodiacData[zodiac];
+
+        //     zodiacDetails.innerHTML = data.description
+        //         ? `
+        //     <div>
+        //         <div> text 1, text 2 , text 3 , text 4 </div>
+        //     <div class="details-content">
+        //         <p>${data.description}</p>
+        //     </div>
+        //     <div>
+        //   `
+        //         : '<div></div>'; // If no description, set innerHTML to an empty string
+        // }
+
         function updateDetails(zodiac) {
             const data = zodiacData[zodiac];
 
             zodiacDetails.innerHTML = data.description
                 ? `
-            <div class="details-content">
-                <p>${data.description}</p>
-            </div>
+            <div>
+               <p class = 'zod-rec'>Gain: ${data.adayam} | Loss: ${data.vyayam} | Recognition: ${data.rajapujyam} | Dishonor: ${data.avamanam}</p>
+                <div class="details-content">
+                    <p>${data.description}</p>
+                </div>
+            <div>
           `
                 : '<div></div>'; // If no description, set innerHTML to an empty string
         }
