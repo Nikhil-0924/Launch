@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,81 +9,231 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            /* background-color: #f9f9f9; */
+            /* background: radial-gradient(circle, #1a1a40, #000020); */
+            background: radial-gradient(circle, #1a1a40, #3d3dd4);
         }
-        .zodiac-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+
+        .title {
+            color: white;
         }
+
+        .circle-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 5px auto;
+        }
+
+        .center-image {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 3px solid gray;
+            background-color: white;
+            padding: 5px;
+        }
+
+        .orbit {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: rotate 60s linear infinite;
+        }
+
         .zodiac-button {
-            border: 1px solid gray;
-            padding: 10px;
-            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid gray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            background-color: #f8f8f8;
+            transition: transform 0.2s, background-color 0.3s;
         }
+
         .zodiac-button img {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
         }
-        .details {
+
+        .zodiac-button:hover {
+            background-color: lightgray;
+            transform: scale(1.2);
+        }
+
+        /* .details {
             border: 1px solid gray;
             padding: 20px;
             border-radius: 8px;
             display: inline-block;
             text-align: left;
+            margin-top: 20px;
+            background-color: white;
         }
+
         .details img {
             width: 100px;
             height: 100px;
             display: block;
             margin: 0 auto 10px;
+        } */
+
+        .details {
+            /* border: 1px solid gray; */
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            /* background-color: white; */
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .details img {
+            width: 100px;
+            height: 100px;
+            margin-right: 15px;
+            /* Adds space between image and text */
+        }
+
+        .details-content {
+            display: grid;
+            border-radius: 10px;
+            padding: 5px;
+            grid-template-columns: auto auto;
+            gap: 5px;
+            background-color: white;
+            border: 1px solid gray;
+            /* Controls spacing between elements */
+        }
+
+        /* Rotation Animation */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
-    <h1>Select Your Zodiac Sign</h1>
-    <div class="zodiac-container" id="zodiacContainer"></div>
-    <div class="details" id="zodiacDetails"></div>
-    
+    <h1 class="title">Select Your Zodiac Sign</h1>
+
+    <div class="circle-container">
+        <img src="./test-img.jpg" alt="Center Image" class="center-image">
+        <div class="orbit" id="orbitContainer"></div>
+    </div>
+
+    <div  class="details" id="zodiacDetails"></div>
+
     <script>
         const zodiacData = {
-            "Mesham": { image: "./test-img.jpg", adayam: 2, vyayam: 14, rajapujyam: 5, avamanam: 7 },
-            "Vrishabham": { image: "vrishabham.png", adayam: 11, vyayam: 5, rajapujyam: 1, avamanam: 3 },
-            "Mithunam": { image: "mithunam.png", adayam: 10, vyayam: 6, rajapujyam: 2, avamanam: 3 },
-            "Karkatakam": { image: "karkatakam.png", adayam: 8, vyayam: 2, rajapujyam: 7, avamanam: 6 },
-            "Simham": { image: "simham.png", adayam: 11, vyayam: 11, rajapujyam: 3, avamanam: 6 },
-            "Kanya": { image: "kanya.png", adayam: 14, vyayam: 2, rajapujyam: 6, avamanam: 6 },
-            "Tula": { image: "tula.png", adayam: 11, vyayam: 5, rajapujyam: 2, avamanam: 2 },
-            "Vrischikam": { image: "vrischikam.png", adayam: 2, vyayam: 14, rajapujyam: 5, avamanam: 2 },
-            "Dhanus": { image: "dhanus.png", adayam: 5, vyayam: 5, rajapujyam: 5, avamanam: 5 },
-            "Makaram": { image: "makaram.png", adayam: 8, vyayam: 14, rajapujyam: 4, avamanam: 5 },
-            "Kumbham": { image: "kumbham.png", adayam: 8, vyayam: 14, rajapujyam: 7, avamanam: 5 },
-            "Meenam": { image: "meenam.png", adayam: 5, vyayam: 5, rajapujyam: 3, avamanam: 1 }
+            "Mesham": {
+                image: "./mesham.jpg", adayam: 2, vyayam: 14, rajapujyam: 5, avamanam: 7, description: `Aries (March 21 - April 19)
+2025 brings bold opportunities for growth, especially in your career. You’ll feel more confident, allowing you to take on leadership roles and make big strides. Your energy is at an all-time high, and personal relationships are full of excitement and passion.`},
+            "Vrishabham": {
+                image: "./vrishabham.jpg", adayam: 11, vyayam: 5, rajapujyam: 1, avamanam: 3, description: `Taurus (April 20 - May 20)
+This year, you’ll see incredible personal and financial growth. New adventures will expand your horizons, especially in travel or learning. Your determination and steady approach will bring long-term rewards. Relationships will flourish with deeper emotional connections.`},
+            "Mithunam": {
+                image: "./mithunam.jpg", adayam: 10, vyayam: 6, rajapujyam: 2, avamanam: 3, description: `Gemini (May 21 - June 20)
+2025 offers a chance to break free from old limitations. You’ll experience breakthroughs in creative and financial areas. Partnerships and collaborations will lead to exciting and profitable outcomes, and your communication skills will shine in every aspect of life.` },
+            "Karkatakam": {
+                image: "./karkatakam.jpg", adayam: 8, vyayam: 2, rajapujyam: 7, avamanam: 6, description: `Cancer (June 21 - July 22)
+This year promises harmony in your home and family life. You’ll experience a deep sense of emotional fulfillment and well-being. Work-related achievements will also be highlighted, with opportunities for recognition and advancement.`},
+            "Simham": {
+                image: "./simham.jpg", adayam: 11, vyayam: 11, rajapujyam: 3, avamanam: 6, description: `Leo (July 23 - August 22)
+In 2025, your charisma will help you make significant connections in both personal and professional circles. Creative projects and ideas will gain traction, and you’ll find fulfillment in expressing yourself. There’s potential for new friendships that bring joy and excitement.` },
+            "Kanya": {
+                image: "./kanya.jpg", adayam: 14, vyayam: 2, rajapujyam: 6, avamanam: 6, description: `Virgo (August 23 - September 22)
+2025 brings opportunities for financial stability and growth. You’ll find yourself making wise investments or receiving unexpected rewards for your efforts. Family and home life will also be harmonious, providing a strong support system for your ambitions.` },
+            "Tula": {
+                image: "./tula.jpg", adayam: 11, vyayam: 5, rajapujyam: 2, avamanam: 2, description: `Libra (September 23 - October 22)
+This year, you’ll feel more self-assured, ready to pursue your dreams with confidence. Your social life is lively, and you’ll build new networks that support your goals. There’s great potential for new beginnings in both love and career.` },
+            "Vrischikam": {
+                image: "./vrischikam.jpg", adayam: 2, vyayam: 14, rajapujyam: 5, avamanam: 2, description: `Scorpio (October 23 - November 21)
+In 2025, you’ll experience healing and personal transformation. Your efforts to improve your health, finances, or emotional well-being will pay off. Positive changes are likely in your work environment, and there’s a boost in your creative and spiritual growth.`},
+            "Dhanus": {
+                image: "./dhanus.jpg", adayam: 5, vyayam: 5, rajapujyam: 5, avamanam: 5, description: `Sagittarius (November 22 - December 21)
+This year, you’ll be on a high when it comes to personal relationships. Your optimism and adventurous spirit will draw new, exciting people into your life. Your creative and artistic endeavors also shine, leading to unexpected rewards.` },
+            "Makaram": {
+                image: "./makaram.jpg", adayam: 8, vyayam: 14, rajapujyam: 4, avamanam: 5, description: `Capricorn (December 22 - January 19)
+2025 is the year to enjoy the rewards of your hard work. Your career sees incredible advancement, and financial opportunities come your way. Relationships with colleagues or family members are strengthened, and you’re recognized for your achievements.` },
+            "Kumbham": {
+                image: "./kumbham.jpg", adayam: 8, vyayam: 14, rajapujyam: 7, avamanam: 5, description: `Aquarius (January 20 - February 18)
+In 2025, your mind will be sharp and filled with innovative ideas. This is a fantastic time for intellectual pursuits, travel, and expanding your knowledge. Positive changes in love and friendship will add a sense of fulfillment and joy to your life.`},
+            "Meenam": {
+                image: "./meenam.jpg", adayam: 5, vyayam: 5, rajapujyam: 3, avamanam: 1, description: `Pisces (February 19 - March 20)
+2025 brings abundance and stability, especially in your finances. You’ll feel more secure in your career and experience a boost in confidence. Emotional growth and deepening relationships will bring peace, and your creative projects will find success.` }
         };
 
-        const zodiacContainer = document.getElementById("zodiacContainer");
+        const orbitContainer = document.getElementById("orbitContainer");
         const zodiacDetails = document.getElementById("zodiacDetails");
+        const totalZodiac = Object.keys(zodiacData).length;
+        const radius = 140; // Distance from center
 
-        Object.keys(zodiacData).forEach(zodiac => {
+        Object.keys(zodiacData).forEach((zodiac, index) => {
+            const angle = (index / totalZodiac) * (2 * Math.PI); // Calculate angle
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
             const button = document.createElement("div");
             button.classList.add("zodiac-button");
+            button.style.left = `calc(50% + ${x}px - 30px)`; // Adjust position
+            button.style.top = `calc(50% + ${y}px - 30px)`;
             button.innerHTML = `<img src="${zodiacData[zodiac].image}" alt="${zodiac}">`;
             button.onclick = () => updateDetails(zodiac);
-            zodiacContainer.appendChild(button);
+
+            orbitContainer.appendChild(button);
         });
+
+        // function updateDetails(zodiac) {
+        //     const data = zodiacData[zodiac];
+        //     zodiacDetails.innerHTML = `
+        //         <img src="${data.image}" alt="${zodiac}">
+        //         <h2>${zodiac}</h2>
+        //         <p>Adayam: ${data.adayam}</p>
+        //         <p>Vyayam: ${data.vyayam}</p>
+        //         <p>Rajapujyam: ${data.rajapujyam}</p>
+        //         <p>Avamanam: ${data.avamanam}</p>
+        //     `;
+        // }
+
+        //     function updateDetails(zodiac) {
+        //         const data = zodiacData[zodiac];
+        //         zodiacDetails.innerHTML = `
+
+        //     <div class="details-content">
+        //         <p>${data.description}</p>
+        //     </div>
+        // `;
+        //     }
 
         function updateDetails(zodiac) {
             const data = zodiacData[zodiac];
-            zodiacDetails.innerHTML = `
-                <img src="${data.image}" alt="${zodiac}">
-                <h2>${zodiac}</h2>
-                <p>Adayam: ${data.adayam}</p>
-                <p>Vyayam: ${data.vyayam}</p>
-                <p>Rajapujyam: ${data.rajapujyam}</p>
-                <p>Avamanam: ${data.avamanam}</p>
-            `;
+
+            zodiacDetails.innerHTML = data.description
+                ? `
+            <div class="details-content">
+                <p>${data.description}</p>
+            </div>
+          `
+                : '<div></div>'; // If no description, set innerHTML to an empty string
         }
+
     </script>
 </body>
+
+</html>
