@@ -11,7 +11,7 @@
             text-align: center;
             /* background: radial-gradient(circle, #0c2849, #3d3dd4); */
             /* background: radial-gradient(circle, #0c2849, #6ecdea); */
-            background: radial-gradient(circle,#6ecdea, #0c2849);
+            background: radial-gradient(circle, #6ecdea, #0c2849);
         }
 
         .title {
@@ -87,11 +87,49 @@
             font-weight: bold;
         }
 
+        .zod-desclaimer {
+            font-size: 8px;
+            color: red;
+
+        }
+
+
+
         .details img {
             width: 100px;
             height: 100px;
             margin-right: 15px;
             /* Adds space between image and text */
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            /* background-color: #f8f9fa; */
+            /* Optional: Background color */
+            /* padding: 10px 0; */
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-size: 8px;
+            /* font-weight: bold; */
+            color: red;
+            /* text-shadow: 2px 2px 5px white; */
+            animation: marquee 25s linear infinite;
+            font-weight: bold;
+            
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
         }
 
         .background-img {
@@ -228,9 +266,14 @@ In 2025, your mind will be sharp and filled with innovative ideas. This is a fan
                 <div class="background-img"></div> 
                 <p>${data.description}</p>
             </div>
+             <div class="marquee-container">
+      <p class="marquee-text">
+        Note : Remember that you have free will and control over your own life. Zodiac signs are not destiny.
+      </p>
+    </div>
         </div>
         `
-                : '<div></div>'; // If no description, set innerHTML to an empty string
+                : '<div>klajsdjf</div>'; // If no description, set innerHTML to an empty string
 
             // Set background dynamically
             document.querySelector(".background-img").style.backgroundImage = `url('${data.image}')`;
