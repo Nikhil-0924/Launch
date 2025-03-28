@@ -82,7 +82,7 @@
         }
 
         .zod-rec {
-            font-size: 8px;
+            font-size: 12px;
             color: white;
             font-weight: bold;
         }
@@ -113,13 +113,13 @@
 
         .marquee-text {
             display: inline-block;
-            font-size: 12px;
+            font-size: 10px;
             /* font-weight: bold; */
             color: red;
             /* text-shadow: 2px 2px 5px white; */
             animation: marquee 25s linear infinite;
             font-weight: bold;
-            
+
         }
 
         @keyframes marquee {
@@ -253,6 +253,13 @@ In 2025, your mind will be sharp and filled with innovative ideas. This is a fan
         });
 
 
+        //     <div class="marquee-container">
+        //   <p class="marquee-text">
+        //     Note : Remember that you have free will and control over your own life. Zodiac signs are not destiny.
+        //   </p>
+        // </div>
+
+
         function updateDetails(zodiac) {
             const data = zodiacData[zodiac];
 
@@ -266,11 +273,7 @@ In 2025, your mind will be sharp and filled with innovative ideas. This is a fan
                 <div class="background-img"></div> 
                 <p>${data.description}</p>
             </div>
-             <div class="marquee-container">
-      <p class="marquee-text">
-        Note : Remember that you have free will and control over your own life. Zodiac signs are not destiny.
-      </p>
-    </div>
+            
         </div>
         `
                 : '<div>klajsdjf</div>'; // If no description, set innerHTML to an empty string
